@@ -3,10 +3,10 @@ import { useState } from "react";
 import Form from "./Form";
 
 export default function Item({ content, todoList, setTodoList, TodoList }) {
-  const [state, setState] = useState("undone");
+  const [isChecked, setIsChecked] = useState(false);
 
-  const changeState = () => {
-    setState(state === "undone" ? "done" : "undone");
+  const toggleChecked = () => {
+    setIsChecked(!isChecked);
   };
 
   const removeTodo = (e) => {
@@ -15,12 +15,10 @@ export default function Item({ content, todoList, setTodoList, TodoList }) {
 
   return (
     <TodoContents>
-      <Text value={state} onClick={changeState}>
+      <Text onClick={toggleChecked} isChecked={isChecked}>
         {content}
       </Text>
-      <RemoveButton value={state} onClick={removeTodo}>
-        X
-      </RemoveButton>
+      <RemoveButton onClick={removeTodo}>X</RemoveButton>
     </TodoContents>
   );
 }
@@ -36,7 +34,7 @@ const Text = styled.div`
   color: #495057;
   margin-left: 1rem;
   ${(props) =>
-    props.value === "done" &&
+    props.isChecked &&
     css`
       text-decoration: line-through;
     `}

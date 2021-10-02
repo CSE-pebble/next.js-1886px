@@ -12,12 +12,12 @@ export default function Form({ todoList, setTodoList }) {
   };
 
   const onChange = (e) => {
-    setText(e.target.value); //text에 값 업데이트
+    setText(e.target.value);
   };
 
   const addTodo = (e) => {
-    const updatedList = [...todoList, text]; //기존+새로운 todo를 배열에 저장
-    setTodoList(updatedList); //setTodoList에 업데이트
+    const updatedList = [...todoList, text];
+    setTodoList(updatedList);
     setText("");
   };
 
